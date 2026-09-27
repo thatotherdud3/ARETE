@@ -13,7 +13,7 @@
 html {
   scroll-behavior: smooth;
 }
-root{
+:root{
     --bg:#000000;
     --nav-bg:#000000;
     --ink:#f5f3ee;
@@ -74,6 +74,25 @@ img {
   text-transform: uppercase;
   text-align: center;
   padding: 1rem;
+}
+
+/* Reusable class for real photography, dropped in wherever a .placeholder
+   used to sit. Sized by the same layout rules as .placeholder (aspect-ratio,
+   width, height) — see each rule below where .photo is added alongside it. */
+.photo {
+  object-fit: cover;
+  object-position: var(--pos, center); /* nudge the crop focal point per-image, see below */
+  display: block;
+  border: none;
+}
+
+/* Add this second class ("contain") to any <img class="photo contain">
+   to show the WHOLE image with no cropping. The container keeps its usual
+   size/aspect-ratio; any empty space is transparent so it blends into
+   whatever background sits behind it, instead of showing as a visible border. */
+.photo.contain {
+  object-fit: contain;
+  background: transparent;
 }
 
 
@@ -325,7 +344,9 @@ footer {
 }
 
 .col-img .placeholder,
-.tier-img .placeholder {
+.col-img .photo,
+.tier-img .placeholder,
+.tier-img .photo {
   aspect-ratio: 4 / 5;
   width: 100%;
 }
@@ -395,6 +416,13 @@ footer {
   );
   border: 1px solid #7d7266;
   color: #eee8df;
+}
+
+.cotm .col-img .photo {
+  aspect-ratio: auto;
+  height: 100%;
+  min-height: 340px;
+  width: 100%;
 }
 
 .cotm-content {
@@ -509,13 +537,15 @@ footer {
 }
 
 .closing-hero {
-  height: 45vh;
-  min-height: 300px;
+  height: 55vh;
+  min-height: 380px;
 }
 
-.tier-img .placeholder {
-  aspect-ratio: 4 / 3;
+.tier-img .placeholder,
+.tier-img .photo {
+  aspect-ratio: 3 / 4;
   width: 100%;
+  border-radius: 14px;
 }
 
 .tier-name {
@@ -601,7 +631,8 @@ footer {
   border-top: 1px solid #262626;
 }
 
-.product-card .placeholder {
+.product-card .placeholder,
+.product-card .photo {
   aspect-ratio: 1 / 1;
   width: 100%;
 }
@@ -685,7 +716,17 @@ footer a {
   color: #a8a49c;
   font-size: 0.8rem;
 }
-
+/* Boxed hero variant — image floats as a centered card on the black
+   background instead of running full-bleed edge-to-edge. */
+.hero.closing-hero.hero-boxed {
+  height: auto;
+  min-height: 0;
+  max-width: 1000px;
+  aspect-ratio: 16 / 9;
+  margin: 4rem auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
 
 /* ------------------------- */
 /* BIG BRAND FINISH */
@@ -695,9 +736,12 @@ footer a {
   background-color: #f0f0f0;
 }
 
-.hero .placeholder {
+.hero .placeholder,
+.hero .photo {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-overlay {
