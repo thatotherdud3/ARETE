@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ARETE — Memberships</title>
 <link rel="stylesheet" href="style.css">
+<noscript><style>.page-loader{display:none!important}.hero-text h1{opacity:1!important;transform:none!important}</style></noscript>
+<link rel="preload" as="image" href="img/membership-hero.webp" fetchpriority="high">
+
 </head>
 <body class="theme-memberships">
+<div class="page-loader"><span>ARETE</span></div>
 
 <header class="global-nav">
   <div class="nav-left"></div>
@@ -20,53 +24,177 @@
   </div>
   
   <div class="nav-right">
-    <a href="cart.html" class="cart-icon" aria-label="Cart">
+    <a href="#" class="nav-signup">Sign Up</a>
+    <button class="cart-icon" type="button" aria-label="Cart, 0 items">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.29 5.16A2 2 0 0 0 6.53 21h11.94M9 21h.01M17 21h.01" />
       </svg>
-    </a>
+      <span class="cart-count" aria-hidden="true">0</span>
+    </button>
   </div>
 </header>
 
 <div class="hero hero-red">
-  <img class="photo" src="img/membership-hero.png" alt="Red-toned shot of a member training with a kettlebell">
+  <img class="photo" src="img/membership-hero.webp" fetchpriority="high" loading="eager" alt="Red-toned shot of a member training with a kettlebell">
   <div class="hero-overlay"></div>
   <div class="hero-text"><h1>Don't Dream It.<br>Train It.</h1></div>
 </div>
 
 <section>
   <div class="tier">
-    <div class="tier-img"><img class="photo contain" src="img/membership2.png" alt="Member lifting a weight plate at ARETE"></div>
+    <div class="tier-img"><img class="photo contain" src="img/membership2.webp" alt="Member lifting a weight plate at ARETE" loading="lazy" decoding="async"></div>
     <div>
       <div class="tier-name">Monthly Membership</div>
       <div class="tier-price">$2,500 / MONTH</div>
-      <p class="tier-desc">Full access to all training floors, classes, and recovery facilities. Includes biometric entry, premium towel and laundry service, personalized locker, and priority class booking. Members receive two complimentary personal training sessions each month plus invitations to exclusive events. Student discounts available with valid ID.</p>
+      <p class="tier-desc">The full ARETE floor, on your terms — no long-term commitment, everything you need to train seriously from day one.</p>
+      <ul class="tier-perks">
+        <li>Unrestricted access to every training floor, studio and class, 5am–1am weekdays</li>
+        <li>2 one-on-one sessions each month with any coach on staff</li>
+        <li>Priority class booking, 48 hours ahead of walk-in access</li>
+        <li>Biometric entry, a personal locker, and daily towel &amp; laundry service</li>
+        <li>2 guest passes a year to bring a friend onto the floor</li>
+        <li>Recovery lounge access — sauna, plunge and stretch zone</li>
+        <li>Student rate available with valid ID</li>
+      </ul>
+      <button class="btn-outline" type="button" data-booking="membership" data-tier="Monthly Membership">Join Now</button>
     </div>
   </div>
 
   <div class="tier rev">
-    <div class="tier-img"><img class="photo contain" src="img/membership1.png" alt="Silhouetted member running on a studio treadmill"></div>
+    <div class="tier-img"><img class="photo contain" src="img/membership1.webp" alt="Silhouetted member running on a studio treadmill" loading="lazy" decoding="async"></div>
     <div>
       <div class="tier-name">Yearly Membership</div>
       <div class="tier-price">$36,000 / YEAR</div>
-      <p class="tier-desc">Comprehensive access across all facilities with enhanced privileges. Includes quarterly fitness assessments, nutrition consultations, and priority booking for specialty workshops. Yearly members also receive six complimentary personal training sessions each month, dedicated concierge support for scheduling, and invitations to private wellness retreats and networking events.</p>
-      <button class="btn-outline">Join Now</button>
+      <p class="tier-desc">Everything in Monthly, built out for members who train here, not just visit — with triple the coaching and a team that plans around you.</p>
+      <ul class="tier-perks">
+        <li>Everything in Monthly Membership, included</li>
+        <li>6 one-on-one sessions each month — enough to train with a coach nearly every week</li>
+        <li>A dedicated concierge for scheduling, so you text instead of call</li>
+        <li>Quarterly fitness assessment with a written program review</li>
+        <li>A complimentary nutrition consultation every quarter</li>
+        <li>First access to specialty workshops, before they're opened to the floor</li>
+        <li>6 guest passes a year</li>
+        <li>Invitations to private wellness retreats and member networking evenings</li>
+        <li>Rate locked for your full term, even if membership pricing increases</li>
+      </ul>
+      <button class="btn-outline" type="button" data-booking="membership" data-tier="Yearly Membership">Join Now</button>
     </div>
   </div>
 
   <div class="tier">
-    <div class="tier-img"><img class="photo contain" src="img/membership3.png" alt="Member performing a kettlebell swing"></div>
+    <div class="tier-img"><img class="photo contain" src="img/membership3.webp" alt="Member performing a kettlebell swing" loading="lazy" decoding="async"></div>
     <div>
       <div class="invite-only" style="margin-bottom:.6rem;">Invitation Only</div>
       <div class="tier-name">Founders' Circle</div>
       <div class="tier-price">$67,000 / YEAR</div>
-      <p class="tier-desc">The ultimate expression of exclusivity and performance. Benefits include unlimited personal training with senior coaches, access to private studios, and entry to the wellness lounge featuring cryotherapy, IV therapy, and hyperbaric recovery. Members enjoy concierge locker suites with laundry and gear service, chef-curated meals, quarterly medical and performance testing, and invitations to intimate, members-only gatherings. Travel reciprocity with partner luxury gyms worldwide ensures consistent training wherever you go. Founders' Circle members also receive priority access to limited-edition Balenciaga Active collections, exclusive in-gym styling consultations, and annual invitations to Balenciaga fashion shows.</p>
-      <button class="btn-outline">Enquire Now</button>
+      <p class="tier-desc">Everything in Yearly, replaced with unlimited. A small, invitation-only roster with a private studio, a senior coaching staff, and a team that handles what's outside the gym too.</p>
+      <ul class="tier-perks">
+        <li>Everything in Yearly Membership, included</li>
+        <li>Unlimited one-on-one training with our senior coaching staff — no monthly cap</li>
+        <li>A private studio suite reserved for your sessions</li>
+        <li>On-demand recovery lounge: cryotherapy, IV therapy and hyperbaric chamber, no booking required</li>
+        <li>A personal locker suite with daily laundry and gear turnover</li>
+        <li>Chef-curated meals available on-site, any day</li>
+        <li>Quarterly medical-grade performance testing with a physician</li>
+        <li>Global reciprocity — train at any partner club worldwide, no notice required</li>
+        <li>First access to every limited Balenciaga Active drop, plus a private in-club styling session</li>
+        <li>An annual seat at the Balenciaga runway show</li>
+        <li>A dedicated relationship manager for anything outside the gym</li>
+      </ul>
+      <button class="btn-outline" type="button" data-booking="membership" data-tier="Founders' Circle">Enquire Now</button>
     </div>
   </div>
 
+  <h2 class="section-title">Compare Membership Tiers</h2>
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th scope="col" class="compare-feature">&nbsp;</th>
+          <th scope="col">Monthly<span class="compare-price">$2,500/mo</span></th>
+          <th scope="col">Yearly<span class="compare-price">$36,000/yr</span></th>
+          <th scope="col" class="compare-highlight">Founders' Circle<span class="compare-price">$67,000/yr</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Enrollment</th>
+          <td>Open</td>
+          <td>Open</td>
+          <td class="compare-highlight">Invitation only</td>
+        </tr>
+        <tr>
+          <th scope="row">Facility access</th>
+          <td>Full access, all floors</td>
+          <td>Full access, enhanced privileges</td>
+          <td class="compare-highlight">Full access + private studios</td>
+        </tr>
+        <tr>
+          <th scope="row">Personal training</th>
+          <td>2 sessions / month</td>
+          <td>6 sessions / month</td>
+          <td class="compare-highlight">Unlimited, senior coaches</td>
+        </tr>
+        <tr>
+          <th scope="row">Assessments</th>
+          <td class="compare-dash">—</td>
+          <td>Quarterly fitness assessments</td>
+          <td class="compare-highlight">Quarterly medical &amp; performance testing</td>
+        </tr>
+        <tr>
+          <th scope="row">Nutrition &amp; meals</th>
+          <td class="compare-dash">—</td>
+          <td>Nutrition consultations</td>
+          <td class="compare-highlight">Consultations + chef-curated meals</td>
+        </tr>
+        <tr>
+          <th scope="row">Recovery lounge</th>
+          <td class="compare-dash">—</td>
+          <td class="compare-dash">—</td>
+          <td class="compare-highlight">Cryotherapy, IV therapy, hyperbaric</td>
+        </tr>
+        <tr>
+          <th scope="row">Concierge support</th>
+          <td class="compare-dash">—</td>
+          <td>Dedicated scheduling concierge</td>
+          <td class="compare-highlight">Full concierge + relationship manager</td>
+        </tr>
+        <tr>
+          <th scope="row">Guest passes</th>
+          <td>2 / year</td>
+          <td>6 / year</td>
+          <td class="compare-highlight">Unlimited</td>
+        </tr>
+        <tr>
+          <th scope="row">Rate lock</th>
+          <td class="compare-dash">—</td>
+          <td>Locked for full term</td>
+          <td class="compare-highlight">Locked for full term</td>
+        </tr>
+        <tr>
+          <th scope="row">Events &amp; retreats</th>
+          <td>Invitations to exclusive events</td>
+          <td>Private retreats &amp; networking</td>
+          <td class="compare-highlight">Intimate members-only gatherings</td>
+        </tr>
+        <tr>
+          <th scope="row">Travel reciprocity</th>
+          <td class="compare-dash">—</td>
+          <td class="compare-dash">—</td>
+          <td class="compare-highlight">Worldwide partner clubs</td>
+        </tr>
+        <tr>
+          <th scope="row">Balenciaga Active</th>
+          <td>Shop access</td>
+          <td>Shop access</td>
+          <td class="compare-highlight">Priority drops, styling, runway invites</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <div class="tier">
-    <div class="tier-img"><img class="photo contain" src="img/benefits.png" alt="Member performing a kettlebell swing"></div>
+    <div class="tier-img"><img class="photo contain" src="img/benefits.webp" alt="Member performing a kettlebell swing" loading="lazy" decoding="async"></div>
     <div>
       <h2 class="section-title" style="text-align:left;">Membership Benefits</h2>
       <ul class="benefit-list">
@@ -83,30 +211,37 @@
     </div>
   </div>
 
-  <div class="quotes">
-    <div class="quote-card">
-      “Even with my schedule, I actually look forward to coming here. The equipment is spotless, the staff know me by name, and it never feels crowded.”
-      <cite>— Alexander D.</cite>
-    </div>
-    <div class="quote-card">
-      “I joined the Founders' Circle because I needed consistency. Between work and travel, having everything — from training to recovery — handled for me keeps my health on track without compromise.”
-      <cite>— David S.</cite>
-    </div>
-  </div>
 </section>
 
 <div class="hero hero-red closing-hero hero-boxed">
-  <img class="photo" src="img/membership-footer.png" alt="Red-toned shot of members boxing training">
+  <img class="photo" src="img/membership-footer.webp" alt="Red-toned shot of members boxing training" loading="lazy" decoding="async">
   <div class="hero-overlay"></div>
   <div class="hero-text"><h1>Don't Dream It.<br>Train It.</h1></div>
 </div>
 
+<!-- Static, build-time copy of the inquiry form so Netlify Forms can detect
+     it (Netlify only registers forms present in the raw HTML, not ones
+     injected by JavaScript). The real, visible form in the modal submits
+     to this same form name. Safe to delete this block if not hosting on
+     Netlify — see main.js for the submit handler. -->
+<form name="membership-inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <input type="tel" name="phone">
+  <input type="text" name="tier">
+  <input type="text" name="source">
+  <textarea name="details"></textarea>
+  <input type="text" name="bot-field">
+</form>
+
 <footer>
   <a href="#" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.7l-5.2-6.8L5.5 22H2.4l8.1-9.3L1 2h6.8l4.7 6.2L18.9 2zm-1.2 18h1.7L7.4 4H5.6l12.1 16z"/></svg></a>
   <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.2a2.8 2.8 0 0 0-2-2C18.9 3.7 12 3.7 12 3.7s-6.9 0-8.5.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 12a29 29 0 0 0 .5 5.8 2.8 2.8 0 0 0 2 2c1.6.5 8.5.5 8.5.5s6.9 0 8.5-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 23 12a29 29 0 0 0-.5-5.8zM9.8 15.5V8.5l6 3.5-6 3.5z"/></svg></a>
-  <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
-  <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.19 1.48-2.19 3v5.8h-4V9z"/></svg></a>
+  <a href="https://www.instagram.com/thatotherdud3?stkn=MTJqbG55Z2NrNGo4YQ%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+  <a href="www.linkedin.com/in/blessing-c-6872802a1
+" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.19 1.48-2.19 3v5.8h-4V9z"/></svg></a>
 </footer>
 
+<script src="main.js" defer></script>
 </body>
 </html>

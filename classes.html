@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ARETE — Classes</title>
 <link rel="stylesheet" href="style.css">
+<noscript><style>.page-loader{display:none!important}.hero-text h1{opacity:1!important;transform:none!important}</style></noscript>
+<link rel="preload" as="image" href="img/classes-hero.webp" fetchpriority="high">
+
 </head>
 <body>
+<div class="page-loader"><span>ARETE</span></div>
 
 <header class="global-nav">
   <div class="nav-left"></div>
@@ -21,16 +25,18 @@
   </div>
   
   <div class="nav-right">
-    <a href="cart.html" class="cart-icon" aria-label="Cart">
+    <a href="#" class="nav-signup">Sign Up</a>
+    <button class="cart-icon" type="button" aria-label="Cart, 0 items">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.29 5.16A2 2 0 0 0 6.53 21h11.94M9 21h.01M17 21h.01" />
       </svg>
-    </a>
+      <span class="cart-count" aria-hidden="true">0</span>
+    </button>
   </div>
 </header>
 
 <div class="hero">
-  <img class="photo" src="img/classes-hero.png" alt="Member holding a plank during a mobility class at ARETE">
+  <img class="photo" src="img/classes-hero.webp" fetchpriority="high" loading="eager" alt="Member holding a plank during a mobility class at ARETE">
   <div class="hero-overlay"></div>
   <div class="hero-text"><h1>Don't Dream It.<br>Train It.</h1></div>
 </div>
@@ -40,31 +46,82 @@
     <h3>Pilates — with Claire<span class="instructor">Studio A</span></h3>
     <div class="time">Mon / Wed / Fri, 7:00 AM – 8:00 AM</div>
     <p>Core-driven training emphasising precision and control. Incorporates reformer-inspired sequences adapted for mat practice. Enhances posture, stability, and muscle endurance.</p>
-    <button class="btn-line">Book Now</button>
+    <button class="btn-line" type="button" data-booking="class" data-class="Pilates — with Claire">Book Now</button>
   </div>
   <div class="class-card tone-b">
     <h3>Boxing — with Andre<span class="instructor">Studio B</span></h3>
     <div class="time">Tue / Thu, 7:30 PM – 8:30 PM</div>
     <p>Technique drills combining footwork, bag work, and sparring. Integrates agility ladders, pad combinations, and cardio bursts. Improves coordination, endurance, and explosive power.</p>
-    <button class="btn-line">Book Now</button>
+    <button class="btn-line" type="button" data-booking="class" data-class="Boxing — with Andre">Book Now</button>
   </div>
   <div class="class-card tone-c">
     <h3>Spin — with Marcela<span class="instructor">Cycle Studio</span></h3>
     <div class="time">Mon / Wed / Fri, 5:30 PM – 6:30 PM</div>
     <p>High-intensity cycling workouts synced to curated playlists. Power metrics and resistance tracking to measure output. Builds cardiovascular endurance and lower-body strength.</p>
-    <button class="btn-line">Book Now</button>
+    <button class="btn-line" type="button" data-booking="class" data-class="Spin — with Marcela">Book Now</button>
   </div>
 </div>
 
 <div class="cotm">
-  <div class="col-img"><img class="photo" src="img/classes-month.png" alt="Close-up of a runner's legs mid-stride"></div>
+  <div class="col-img"><img class="photo" src="img/classes-month.webp" alt="Close-up of a runner's legs mid-stride" loading="lazy" decoding="async"></div>
   <div class="cotm-content">
     <div class="cotm-eyebrow">Class of the Month</div>
     <h3>Endurance Run Club — with Marcus</h3>
     <p>Progressive running sessions for speed, stamina, and pacing strategy. Incorporates interval training, tempo runs, and technique drills. Ideal for 5K to half-marathon prep, with group motivation included.</p>
-    <button class="btn-line">Book Now</button>
+    <button class="btn-line" type="button" data-booking="class" data-class="Endurance Run Club — with Marcus">Book Now</button>
   </div>
 </div>
+
+<section class="trainers-section">
+  <h2 class="section-title">Meet the Coaches</h2>
+  <p style="text-align:center; max-width:640px; margin:0 auto 3rem; font-size:.92rem; color:#a8a49c;">
+    A small roster of specialists, not a rotating cast. Every coach at ARETE trains full-time on our floor.
+  </p>
+  <div class="trainers-grid">
+    <div class="trainer-card">
+      <div class="trainer-avatar tone-a">CL</div>
+      <div class="trainer-name">Claire</div>
+      <div class="trainer-role">Pilates</div>
+      <p class="trainer-bio">Certified reformer and mat Pilates instructor with a decade of experience building postural strength for endurance athletes.</p>
+      <button class="trainer-cta" type="button" data-booking="class" data-class="Pilates — with Claire">Book with Claire</button>
+    </div>
+    <div class="trainer-card">
+      <div class="trainer-avatar tone-b">AN</div>
+      <div class="trainer-name">Andre</div>
+      <div class="trainer-role">Boxing &amp; Strength</div>
+      <p class="trainer-bio">Former competitive boxer turned strength coach, blending technical footwork with conditioning circuits.</p>
+      <button class="trainer-cta" type="button" data-booking="class" data-class="Boxing — with Andre">Book with Andre</button>
+    </div>
+    <div class="trainer-card">
+      <div class="trainer-avatar tone-c">MA</div>
+      <div class="trainer-name">Marcela</div>
+      <div class="trainer-role">Spin</div>
+      <p class="trainer-bio">Power-metrics specialist who trained with professional cycling teams before bringing data-driven spin to ARETE.</p>
+      <button class="trainer-cta" type="button" data-booking="class" data-class="Spin — with Marcela">Book with Marcela</button>
+    </div>
+    <div class="trainer-card">
+      <div class="trainer-avatar tone-a">MC</div>
+      <div class="trainer-name">Marcus</div>
+      <div class="trainer-role">Running</div>
+      <p class="trainer-bio">USATF-certified running coach specialising in 5K-to-half-marathon build-ups, pacing strategy and technique.</p>
+      <button class="trainer-cta" type="button" data-booking="class" data-class="Endurance Run Club — with Marcus">Book with Marcus</button>
+    </div>
+    <div class="trainer-card">
+      <div class="trainer-avatar tone-b">RY</div>
+      <div class="trainer-name">Coach Ryan</div>
+      <div class="trainer-role">Powerlifting</div>
+      <p class="trainer-bio">Competitive powerlifter and strength &amp; conditioning coach focused on technical barbell fundamentals.</p>
+      <button class="trainer-cta" type="button" data-booking="class" data-class="Powerlifting Fundamentals">Book with Ryan</button>
+    </div>
+    <div class="trainer-card">
+      <div class="trainer-avatar tone-c">DL</div>
+      <div class="trainer-name">Dr. Lena</div>
+      <div class="trainer-role">Mobility &amp; Wellness</div>
+      <p class="trainer-bio">Doctor of Physical Therapy bringing a clinical, movement-first approach to mobility and recovery.</p>
+      <button class="trainer-cta" type="button" data-booking="class" data-class="Mindful Mobility">Book with Lena</button>
+    </div>
+  </div>
+</section>
 
 <div class="schedule-block">
   <div class="schedule-inner">
@@ -106,7 +163,7 @@
       </div>
     </div>
 
-    <div class="schedule-cta"><button class="btn-line">Book Now</button></div>
+    <div class="schedule-cta"><button class="btn-line" type="button" data-booking="class" data-class="">Book Now</button></div>
   </div>
 </div>
 
@@ -125,12 +182,28 @@
   </div>
 </div>
 
+<!-- Static, build-time copy of the booking form so Netlify Forms can detect
+     it (Netlify only registers forms present in the raw HTML, not ones
+     injected by JavaScript). The real, visible form in the modal submits
+     to this same form name. Safe to delete this block if not hosting on
+     Netlify — see main.js for the submit handler. -->
+<form name="class-booking" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <input type="tel" name="phone">
+  <input type="text" name="class">
+  <input type="text" name="preferred_date">
+  <textarea name="notes"></textarea>
+  <input type="text" name="bot-field">
+</form>
+
 <footer>
   <a href="#" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.7l-5.2-6.8L5.5 22H2.4l8.1-9.3L1 2h6.8l4.7 6.2L18.9 2zm-1.2 18h1.7L7.4 4H5.6l12.1 16z"/></svg></a>
   <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.2a2.8 2.8 0 0 0-2-2C18.9 3.7 12 3.7 12 3.7s-6.9 0-8.5.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 12a29 29 0 0 0 .5 5.8 2.8 2.8 0 0 0 2 2c1.6.5 8.5.5 8.5.5s6.9 0 8.5-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 23 12a29 29 0 0 0-.5-5.8zM9.8 15.5V8.5l6 3.5-6 3.5z"/></svg></a>
-  <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
-  <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.19 1.48-2.19 3v5.8h-4V9z"/></svg></a>
+  <a href="https://www.instagram.com/thatotherdud3?stkn=MTJqbG55Z2NrNGo4YQ%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+  <a href="https://www.linkedin.com/in/blessing-c-6872802a1" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.19 1.48-2.19 3v5.8h-4V9z"/></svg></a>
 </footer>
 
+<script src="main.js" defer></script>
 </body>
 </html>

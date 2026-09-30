@@ -3,74 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ARETE — Contact & About</title>
+<title>ARETE — Page Not Found</title>
 <link rel="stylesheet" href="style.css">
 <noscript><style>.page-loader{display:none!important}.hero-text h1{opacity:1!important;transform:none!important}</style></noscript>
-<link rel="preload" as="image" href="img/about-hero.webp" fetchpriority="high">
-
+<link rel="preload" as="image" href="img/classes-hero.webp" fetchpriority="high">
+<style>
+  .notfound-hero{ height: 100vh; min-height: 560px; align-items: center; }
+  .notfound-content{
+    position: relative; z-index: 2; width: 100%;
+    padding: 0 1.5rem; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 1.6rem;
+  }
+  .notfound-eyebrow{
+    font-family: 'Inter', sans-serif; font-size: .7rem; letter-spacing: .3em;
+    text-transform: uppercase; color: #c9c4ba;
+  }
+  .notfound-number{
+    font-family: 'Bodoni Moda', 'EB Garamond', serif;
+    font-size: clamp(4rem, 14vw, 8.5rem);
+    line-height: 1; color: #ffffff;
+  }
+  .notfound-text{
+    font-family: 'EB Garamond', serif; font-style: italic;
+    font-size: clamp(1.2rem, 2.6vw, 1.6rem); color: #f5f3ee; max-width: 520px;
+  }
+  .notfound-actions{ display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: .6rem; }
+</style>
 </head>
 <body>
 <div class="page-loader"><span>ARETE</span></div>
 
 <header class="global-nav">
   <div class="nav-left"></div>
-  
+
   <div class="nav-center">
-    <div class="brand">ARETE/CONTACT &amp; ABOUT</div>
+    <div class="brand">ARETE</div>
     <nav class="pill-nav">
       <a href="index.html" class="pill-item grey">HOME</a>
       <a href="classes.html" class="pill-item white">CLASSES</a>
       <a href="memberships.html" class="pill-item white">MEMBERSHIPS</a>
+      <a href="contact.html" class="pill-item white">CONTACT & ABOUT</a>
     </nav>
   </div>
-  
+
   <div class="nav-right">
-    <a href="#" class="nav-signup">Sign Up</a>
-    <button class="cart-icon" type="button" aria-label="Cart, 0 items">
+    <a href="index.html" class="home-icon" aria-label="Home">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.29 5.16A2 2 0 0 0 6.53 21h11.94M9 21h.01M17 21h.01" />
       </svg>
-      <span class="cart-count" aria-hidden="true">0</span>
-    </button>
+    </a>
   </div>
 </header>
 
-<div class="hero">
-  <img class="photo" src="img/about-hero.webp" fetchpriority="high" loading="eager" alt="ARETE members in the studio">
+<div class="hero notfound-hero">
+  <img class="photo" src="img/classes-hero.webp" fetchpriority="high" loading="eager" alt="">
   <div class="hero-overlay"></div>
-  <div class="hero-text"><h1>Don't Dream It.<br>Train It.</h1></div>
-</div>
-
-<section>
-  <h2 class="section-title">Our Story</h2>
-  <div class="story-block">
-    <p>Arete Fitness was created with the belief that luxury fitness can coexist with environmental responsibility. In the heart of New York, our club blends cutting-edge training with a deep commitment to sustainability. The facility runs on eco-powered equipment that feeds energy back into the grid, flooring made from recycled materials, and smart climate systems that reduce waste. Beyond the design, our culture is built on balance: high-performance training paired with wellness practices, and personal growth aligned with planetary health. At Arete Fitness, every rep, every breath, and every drop of sweat moves both you and the environment forward.</p>
-  </div>
-
-  <div class="contact-grid" style="margin-top:4rem;">
-    <div>
-      <h4>Hours</h4>
-      <p>Monday – Friday: 5:00 AM – 1:00 AM<br>Saturday – Sunday: 6:00 AM – 11:00 PM</p>
-    </div>
-    <div>
-      <h4>Arete Fitness</h4>
-      <p>
-        1234 Hudson Avenue, Suite 800<br>
-        Chelsea, New York, NY 10011<br><br>
-        Phone: +1 (212) 555-0100<br>
-        Members &amp; Billing: members@aretefitness.nyc<br>
-        General Inquiries: hello@aretefitness.nyc<br>
-        Press &amp; Partnerships: press@aretefitness.nyc<br><br>
-        Open for calls 8:00 AM – 8:00 PM daily.
-      </p>
+  <div class="notfound-content">
+    <div class="notfound-eyebrow">Error</div>
+    <div class="notfound-number">404</div>
+    <p class="notfound-text">Don't dream it, find it. This page doesn't exist &mdash; but your next session does.</p>
+    <div class="notfound-actions">
+      <a href="index.html" class="btn-line">Back to Home</a>
+      <a href="memberships.html" class="btn-outline">View Memberships</a>
     </div>
   </div>
-</section>
-
-<div class="hero">
-  <img class="photo" src="img/about-footer.webp" alt="ARETE members in the studio" loading="lazy" decoding="async">
-  <div class="hero-overlay"></div>
-  <div class="hero-text"><h1>Don't Dream It.<br>Train It.</h1></div>
 </div>
 
 <footer>
