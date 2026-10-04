@@ -2,7 +2,8 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-  // Loader + page transitions
+  // Loader + page transitions (single hide trigger — calling it more than
+  // once is a no-op, which is what stopped the double-flash)
   const loader = $('.page-loader');
   let hidden = false;
   const hide = () => {
@@ -25,7 +26,7 @@
     setTimeout(() => (location.href = a.href), 450);
   });
 
-  // Nav hide on scroll down, reveal on scroll up
+  // Nav: hide on scroll down, reveal on scroll up
   const nav = $('.global-nav');
   if (nav) {
     let lastY = scrollY, ticking = false;
@@ -112,7 +113,7 @@
   }
 })();
 
-// - Cart (localStorage-backed, shared across every page) -
+// ---------- Cart (localStorage-backed, shared across every page) ----------
 (() => {
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const KEY = 'arete_cart';
@@ -211,12 +212,12 @@
   updateBadge();
 })();
 
-// -micro-interactions-
+// ---------- Additional micro-interactions ----------
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-
+  // Hero text stagger: reveal once the loader has cleared
   const loaderEl = $('.page-loader');
   if (loaderEl) {
     const reveal = () => document.body.classList.add('hero-ready');
@@ -224,7 +225,7 @@
       if (loaderEl.classList.contains('done')) { reveal(); mo.disconnect(); }
     });
     mo.observe(loaderEl, { attributes: true, attributeFilter: ['class'] });
-    // safety net in case the loader is already done 
+    // safety net in case the loader is already done (e.g. bfcache restore)
     if (loaderEl.classList.contains('done')) reveal();
   } else {
     document.body.classList.add('hero-ready');
@@ -290,7 +291,12 @@
     'Core Dynamics', 'High-Performance Running Drills', 'Boxing Technique & Conditioning',
     'Pilates Sculpt', 'Spin Endurance Ride', 'HIIT Power 45'
   ];
-  const TIER_OPTIONS = ['Monthly Membership', 'Yearly Membership', "Founders' Circle"];
+  const TIER_OPTIONS = ['Monthly Membership', 'ARETE SILVER', 'ARETE BLACK'];
+
+  // Submits to Netlify Forms (works once hosted on Netlify — the matching
+  // hidden <form> in the page body is what makes Netlify register the
+  // form name at build time). Falls back to a visible error + mailto link
+  // if the request fails (e.g. not hosted on Netlify).
   const netlifySubmit = (formName, data) =>
     fetch('/', {
       method: 'POST',
@@ -312,17 +318,17 @@
     const tierOpts = TIER_OPTIONS.map(t =>
       `<option value="${escapeHtml(t)}"${t === meta.tier ? ' selected' : ''}>${escapeHtml(t)}</option>`
     ).join('');
-    const isFounders = meta.tier === "Founders' Circle";
+    const isFounders = meta.tier === 'ARETE BLACK';
 
     overlay.innerHTML = `
       <div class="bk-box" role="dialog" aria-modal="true">
         <button class="bk-close" type="button" aria-label="Close">&times;</button>
         <span class="bk-badge">${isClass ? 'Class Booking' : (isFounders ? 'Invitation Only' : 'Membership Inquiry')}</span>
-        <h3 class="bk-title">${isClass ? 'Book a class' : (isFounders ? "Founders' Circle Application" : 'Join ARETE')}</h3>
+        <h3 class="bk-title">${isClass ? 'Book a class' : (isFounders ? "ARETE BLACK Application" : 'Join ARETE')}</h3>
         <p class="bk-sub">${isClass
           ? "Tell us when you'd like to train and we'll confirm your spot by email."
           : (isFounders
-              ? "Founders' Circle is invitation-only. Tell us a little about yourself and we'll follow up personally."
+              ? "ARETE BLACK is invitation-only. Tell us a little about yourself and we'll follow up personally."
               : "Leave your details and a membership advisor will reach out within one business day.")}</p>
 
         <form class="bk-form" novalidate>
@@ -378,7 +384,7 @@
             </div>
             <div class="bk-field">
               <label for="bk-details">${isFounders ? "What are you looking for?" : "Anything we should know?"} <span style="opacity:.6">(optional)</span></label>
-              <textarea id="bk-details" name="details" placeholder="${isFounders ? 'Training goals, schedule, what draws you to Founders\u2019 Circle…' : 'Goals, preferred hours, questions for us…'}"></textarea>
+              <textarea id="bk-details" name="details" placeholder="${isFounders ? 'Training goals, schedule, what draws you to ARETE BLACK…' : 'Goals, preferred hours, questions for us…'}"></textarea>
             </div>
           `}
 
@@ -390,7 +396,7 @@
     const form = $('.bk-form', overlay);
     form.addEventListener('submit', async e => {
       e.preventDefault();
-      if (form.elements['bot-field'].value) return; 
+      if (form.elements['bot-field'].value) return; // honeypot tripped, silently drop
       const btn = $('.bk-submit', form);
       const errEl = $('.bk-error', form);
       errEl.classList.remove('show');

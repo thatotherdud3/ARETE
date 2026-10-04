@@ -1,6 +1,6 @@
-
+/* ------------------------- */
 /* GLOBAL SETUP */
-
+/* ------------------------- */
 
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -95,7 +95,10 @@ img {
   background: transparent;
 }
 
+
+/* ------------------------- */
 /* HEADER */
+/* ------------------------- */
 
 .global-nav {
   display: grid;
@@ -139,6 +142,9 @@ img {
   padding: 4px;
   align-items: center;
 }
+
+/* Sliding indicator behind whichever pill is hovered/focused.
+   JS moves this element's width/transform to match the target pill. */
 .pill-indicator{
   position: absolute;
   top: 4px; left: 4px;
@@ -153,7 +159,7 @@ img {
 }
 .pill-nav.indicator-on .pill-indicator{ opacity: 1; }
 .pill-item{ position: relative; z-index: 1; }
-.pill-item.grey{ background-color: transparent; } 
+.pill-item.grey{ background-color: transparent; } /* the sliding indicator now supplies this */
 
 .pill-item {
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -237,7 +243,7 @@ img {
 }
 .cart-count.show { opacity: 1; transform: scale(1); }
 
-/* CART DRAWER */
+/* ================= CART DRAWER ================= */
 .cart-drawer {
   position: fixed; inset: 0; z-index: 2200;
   visibility: hidden; pointer-events: none;
@@ -288,7 +294,10 @@ img {
 .cart-subtotal span:first-child { color: #a8a49c; text-transform: uppercase; letter-spacing: .08em; font-size: .7rem; }
 .cart-checkout { width: 100%; }
 
+
+/* ------------------------- */
 /* LAYOUT UNITS */
+/* ------------------------- */
 
 section {
   max-width: 1200px;
@@ -393,7 +402,9 @@ footer {
 }
 
 
+/* ------------------------- */
 /* CONTENT ELEMENTS */
+/* ------------------------- */
 
 .hero {
   position: relative;
@@ -818,7 +829,8 @@ footer a {
   color: #a8a49c;
   font-size: 0.8rem;
 }
-
+/* Boxed hero variant — image floats as a centered card on the black
+   background instead of running full-bleed edge-to-edge. */
 .hero.closing-hero.hero-boxed {
   height: auto;
   min-height: 0;
@@ -828,6 +840,10 @@ footer a {
   border-radius: 10px;
   overflow: hidden;
 }
+
+/* ------------------------- */
+/* BIG BRAND FINISH */
+/* ------------------------- */
 
 .pill-item.white:hover {
   background-color: #f0f0f0;
@@ -904,7 +920,9 @@ footer a:hover {
 }
 
 
+/* ------------------------- */
 /* RESPONSIVE */
+/* ------------------------- */
 
 @media (max-width: 1024px) {
   .global-nav {
@@ -978,7 +996,7 @@ footer a:hover {
     grid-template-columns: 1fr;
   }
 }
-/* POLISH */
+/* ================= POLISH LAYER ================= */
 
 /* Loader / page transition */
 .page-loader{position:fixed;inset:0;background:#000;z-index:3000;display:flex;align-items:center;justify-content:center;opacity:1;visibility:visible;transition:opacity .6s ease,visibility 0s linear 0s}
@@ -998,9 +1016,13 @@ footer a:hover {
   opacity: 1;
   transform: none;
 }
+/* Reduced-motion fallback so the headline just appears, no animation.
+   (The no-JS case — where .hero-ready never gets added — is handled by a
+   <noscript> tag in each page's <head>, which also hides the JS-only loader.) */
 @media (prefers-reduced-motion: reduce){
   .hero-text h1{ opacity: 1; transform: none; transition: none; }
 }
+
 /* Magnetic buttons — .btn-line / .btn-outline nudge toward the cursor.
    JS sets --mx/--my (in px) on mousemove and clears them on mouseleave. */
 .btn-line, .btn-outline{
@@ -1010,6 +1032,7 @@ footer a:hover {
 
 .product-card{ position: relative; }
 
+/* Fixed nav that hides on scroll-down, reveals on scroll-up */
 .global-nav{
   position: fixed;
   background: rgba(0,0,0,.5);
@@ -1021,6 +1044,7 @@ footer a:hover {
 .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
+/* Heroes: clip for parallax */
 .hero{overflow:hidden}
 .hero .photo:not(.contain){will-change:transform}
 
@@ -1030,7 +1054,7 @@ footer a:hover {
 .col-img .photo,.tier-img .photo{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
 .col-img:hover .photo,.tier-img:hover .photo{transform:scale(1.06)}
 
-/* Product cards: lift , shadow n zoom */
+/* Product cards: lift + shadow + zoom */
 .product-media{position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
 .product-media .photo{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
 .product-card:hover .product-media{transform:translateY(-10px);box-shadow:0 26px 36px -14px rgba(255,255,255,.2)}
@@ -1044,7 +1068,7 @@ footer a:hover {
 .plus-btn:hover{background:#111;transform:scale(1.12)}
 .plus-btn:hover::before,.plus-btn:hover::after{background:#fff}
 
-/* Quickview */
+/* Quick view */
 .qv{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
 .qv.open{opacity:1;visibility:visible}
 .qv-box{position:relative;display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:860px;background:#0b0b0b;border:1px solid #262626;border-radius:14px;overflow:hidden;transform:translateY(20px);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
@@ -1063,7 +1087,7 @@ footer a:hover {
 .toast{position:fixed;left:50%;bottom:2rem;transform:translate(-50%,20px);background:#f5f3ee;color:#000;padding:.8rem 1.6rem;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;opacity:0;visibility:hidden;transition:all .4s;z-index:2100}
 .toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
 
-/* Mobile*/
+/* Mobile menu */
 .menu-btn{display:none;background:none;border:none;width:32px;height:32px;position:relative;cursor:pointer}
 .menu-btn span{position:absolute;left:4px;right:4px;height:1.5px;background:#fff;transition:transform .4s,top .4s}
 .menu-btn span:first-child{top:12px}.menu-btn span:last-child{top:20px}
@@ -1076,7 +1100,7 @@ footer a:hover {
 @media (max-width:720px){.pill-nav{display:none}.menu-btn{display:block}.qv-box{grid-template-columns:1fr;max-height:92vh;overflow:auto}}
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 
-/* TRAINERS*/
+/* ================= TRAINERS ================= */
 .trainers-section{ max-width:1200px; margin:0 auto; padding:5rem 1.5rem; }
 .trainers-grid{
   display:grid; grid-template-columns:repeat(3, 1fr); gap:2.2rem 1.6rem;
@@ -1103,7 +1127,7 @@ footer a:hover {
 }
 .trainer-cta:hover{ background:#f5f3ee; color:#000; border-color:#f5f3ee; }
 
-/* COMPARISON TABLE  */
+/* ================= COMPARISON TABLE ================= */
 .compare-wrap{ max-width:1200px; margin:0 auto 4rem; padding:0 1.5rem; overflow-x:auto; }
 .compare-table{
   width:100%; min-width:640px; border-collapse:collapse; font-size:.85rem;
@@ -1128,7 +1152,7 @@ footer a:hover {
 .compare-table .compare-highlight{ background:rgba(168,50,50,.08); }
 .compare-table thead th.compare-highlight{ background:rgba(168,50,50,.14); color:#fff; }
 
-/* BOOKING / INQUIRY MODAL */
+/* ================= BOOKING / INQUIRY MODAL ================= */
 .bk{
   position:fixed; inset:0; z-index:2000; display:flex; align-items:center; justify-content:center;
   padding:1.5rem; background:rgba(0,0,0,.78); backdrop-filter:blur(6px);
@@ -1166,7 +1190,6 @@ footer a:hover {
 .bk-field textarea{ resize:vertical; min-height:80px; }
 .bk-field input:focus, .bk-field select:focus, .bk-field textarea:focus{ outline:none; border-color:#f5f3ee; }
 .bk-row2{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-
 @media (max-width:480px){ .bk-row2{ grid-template-columns:1fr; } }
 .bk-hp{ position:absolute; left:-9999px; }
 .bk-submit{
