@@ -566,6 +566,70 @@ footer {
   color: #efe9df;
 }
 
+/* Details strip */
+.cotm-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 560px;
+  margin: 0 auto 2rem;
+  border-top: 1px solid rgba(28, 23, 18, 0.25);
+  border-bottom: 1px solid rgba(28, 23, 18, 0.25);
+}
+
+.cotm-detail {
+  padding: 1rem 0.5rem;
+  font-size: 0.82rem;
+  color: #1c1712;
+  border-left: 1px solid rgba(28, 23, 18, 0.25);
+}
+
+.cotm-detail:first-child { border-left: none; }
+
+.cotm-detail span {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4a3f33;
+}
+
+/* Pace groups */
+.cotm-paces { margin: 0 auto 2.2rem; max-width: 520px; }
+
+.cotm-paces-label {
+  margin-bottom: 0.8rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4a3f33;
+}
+
+.cotm-pace-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.cotm-pace {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(28, 23, 18, 0.45);
+  border-radius: 99px;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: #1c1712;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cotm-pace:hover { background: #1c1712; color: #efe9df; }
+
+@media (max-width: 560px) {
+  .cotm-details { grid-template-columns: repeat(2, 1fr); }
+  .cotm-detail:nth-child(3) { border-left: none; }
+  .cotm-detail:nth-child(n+3) { border-top: 1px solid rgba(28, 23, 18, 0.25); }
+}
+
 .schedule-block {
   background: #a89a8c;
   color: #1c1712;
