@@ -1268,3 +1268,36 @@ footer a:hover {
 .bk-success svg{ margin:0 auto 1.2rem; display:block; }
 .bk-success h3{ font-family:'EB Garamond', serif; font-style:italic; font-size:1.3rem; color:#f5f3ee; margin-bottom:.6rem; }
 .bk-success p{ font-size:.85rem; color:#a8a49c; }
+
+
+/* social links and credit */
+.site-footer{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.35rem;
+  padding:2.7rem 1.5rem;
+}
+.footer-social{display:flex;justify-content:center;align-items:center;gap:1.6rem}
+.footer-social a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  color:var(--ink-dim);
+  transition:color .2s ease;
+}
+.footer-social a:hover,.footer-social a:focus-visible{color:var(--ink)}
+.footer-legal{
+  color:var(--ink-dim);
+  font:500 .65rem/1.6 'Inter',sans-serif;
+  letter-spacing:.14em;
+  text-align:center;
+}
+.footer-legal a{
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+}
+.footer-legal a:hover,.footer-legal a:focus-visible{border-color:currentColor}
