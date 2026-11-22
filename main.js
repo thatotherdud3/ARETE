@@ -118,7 +118,12 @@
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const KEY = 'arete_cart';
   const money = n => '$' + n.toLocaleString('en-US');
-  const getCart = () => { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; } };
+  const getCart = () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY));
+      return Array.isArray(saved) ? saved : [];
+    } catch { return []; }
+  };
 
   function setCart(items) {
     try { localStorage.setItem(KEY, JSON.stringify(items)); } catch {}
@@ -196,16 +201,57 @@
     if (rmBtn) return removeItem(+rmBtn.dataset.remove);
     if (e.target === drawer || e.target.closest('.cart-close')) closeCart();
   });
-  $('.cart-checkout', drawer).addEventListener('click', () => {
+  // demo checkout, no money or orders involved
+  const checkoutModal = document.createElement('div');
+  checkoutModal.className = 'demo-checkout';
+  checkoutModal.innerHTML = `
+    <div class="demo-checkout-box" role="dialog" aria-modal="true" aria-labelledby="demo-checkout-title">
+      <button class="demo-checkout-close" type="button" aria-label="Close preview">&times;</button>
+      <span class="demo-checkout-label">ARETE PRIVATE COLLECTION</span>
+      <h2 id="demo-checkout-title">Your bag, previewed.</h2>
+      <p>Explore the collection and refine your selection. Checkout is a portfolio demonstration, so no payment is taken and no order is placed.</p>
+      <div class="demo-checkout-summary"><span>BAG SUBTOTAL</span><strong class="demo-checkout-amount"></strong></div>
+      <button class="btn-line demo-checkout-return" type="button">RETURN TO YOUR BAG</button>
+    </div>`;
+  document.body.appendChild(checkoutModal);
+  const checkoutTrigger = $('.cart-checkout', drawer);
+  const closeCheckoutPreview = () => {
+    checkoutModal.classList.remove('open');
+    checkoutTrigger.focus();
+  };
+  checkoutTrigger.addEventListener('click', () => {
     if (!getCart().length) return;
-    alert("Checkout isn't connected yet — email hello@aretefitness.nyc with your order and we'll take care of it.");
+    $('.demo-checkout-amount', checkoutModal).textContent =
+      money(getCart().reduce((sum, item) => sum + item.price * item.qty, 0));
+    checkoutModal.classList.add('open');
+    $('.demo-checkout-close', checkoutModal).focus();
+  });
+  checkoutModal.addEventListener('click', e => {
+    if (e.target === checkoutModal || e.target.closest('.demo-checkout-close, .demo-checkout-return'))
+      closeCheckoutPreview();
+  });
+  checkoutModal.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const closeBtn = $('.demo-checkout-close', checkoutModal);
+    const returnBtn = $('.demo-checkout-return', checkoutModal);
+    if (e.shiftKey && document.activeElement === closeBtn) {
+      e.preventDefault(); returnBtn.focus();
+    } else if (!e.shiftKey && document.activeElement === returnBtn) {
+      e.preventDefault(); closeBtn.focus();
+    }
+  });
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape' && checkoutModal.classList.contains('open')) closeCheckoutPreview();
   });
 
   function openCart() { drawer.classList.add('open'); document.body.classList.add('scroll-lock'); }
   function closeCart() { drawer.classList.remove('open'); document.body.classList.remove('scroll-lock'); }
 
   $$('.cart-icon').forEach(btn => btn.addEventListener('click', openCart));
-  addEventListener('keydown', e => e.key === 'Escape' && drawer.classList.contains('open') && closeCart());
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape' && drawer.classList.contains('open') &&
+        !checkoutModal.classList.contains('open')) closeCart();
+  });
 
   window.ARETE_CART = { addToCart, openCart, closeCart };
   renderCart();
@@ -293,17 +339,7 @@
   ];
   const TIER_OPTIONS = ['Monthly Membership', 'ARETE SILVER', 'ARETE BLACK'];
 
-  // Submits to Netlify Forms (works once hosted on Netlify — the matching
-  // hidden <form> in the page body is what makes Netlify register the
-  // form name at build time). Falls back to a visible error + mailto link
-  // if the request fails (e.g. not hosted on Netlify).
-  const netlifySubmit = (formName, data) =>
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ 'form-name': formName, ...data }).toString()
-    });
-
+  // demo only, no booking data leaves the page
   const overlay = document.createElement('div');
   overlay.className = 'bk';
   document.body.appendChild(overlay);
@@ -326,10 +362,10 @@
         <span class="bk-badge">${isClass ? 'Class Booking' : (isFounders ? 'Invitation Only' : 'Membership Inquiry')}</span>
         <h3 class="bk-title">${isClass ? 'Book a class' : (isFounders ? "ARETE BLACK Application" : 'Join ARETE')}</h3>
         <p class="bk-sub">${isClass
-          ? "Tell us when you'd like to train and we'll confirm your spot by email."
+          ? "Explore a class enquiry. This preview does not reserve a place."
           : (isFounders
-              ? "ARETE BLACK is invitation-only. Tell us a little about yourself and we'll follow up personally."
-              : "Leave your details and a membership advisor will reach out within one business day.")}</p>
+              ? "Preview the private ARETE BLACK application. Nothing is sent."
+              : "Explore a membership enquiry. This is a portfolio demonstration.")}</p>
 
         <form class="bk-form" novalidate>
           <input class="bk-hp" tabindex="-1" autocomplete="off" name="bot-field">
@@ -388,33 +424,17 @@
             </div>
           `}
 
-          <button class="bk-submit" type="submit">${isClass ? 'Confirm Booking' : (isFounders ? 'Submit Application' : 'Submit Inquiry')}</button>
-          <p class="bk-error">Something went wrong sending this. Please try again, or email us directly at <a href="mailto:hello@aretefitness.nyc" style="color:#f5f3ee">hello@aretefitness.nyc</a>.</p>
+          <button class="bk-submit" type="submit">${isClass ? 'PREVIEW CLASS ENQUIRY' : (isFounders ? 'PREVIEW APPLICATION' : 'PREVIEW MEMBERSHIP ENQUIRY')}</button>
+          <p class="bk-demo-note">Demo experience. No booking or application will be submitted.</p>
         </form>
       </div>`;
 
     const form = $('.bk-form', overlay);
-    form.addEventListener('submit', async e => {
+    form.addEventListener('submit', e => {
       e.preventDefault();
-      if (form.elements['bot-field'].value) return; // honeypot tripped, silently drop
-      const btn = $('.bk-submit', form);
-      const errEl = $('.bk-error', form);
-      errEl.classList.remove('show');
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-
-      const data = Object.fromEntries(new FormData(form).entries());
-      delete data['bot-field'];
-
-      try {
-        const res = await netlifySubmit(isClass ? 'class-booking' : 'membership-inquiry', data);
-        if (!res.ok) throw new Error('bad status');
-        showSuccess(isClass, meta);
-      } catch (err) {
-        btn.disabled = false;
-        btn.textContent = isClass ? 'Confirm Booking' : (isFounders ? 'Submit Application' : 'Submit Inquiry');
-        errEl.classList.add('show');
-      }
+      if (form.elements['bot-field'].value) return;
+      if (!form.checkValidity()) return form.reportValidity();
+      showSuccess(isClass);
     });
   }
 
@@ -423,10 +443,10 @@
       <button class="bk-close" type="button" aria-label="Close">&times;</button>
       <div class="bk-success">
         <svg width="46" height="46" viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="22" stroke="#f5f3ee" stroke-width="1.4"/><path d="M14 23.5l6 6L32 17" stroke="#f5f3ee" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h3>${isClass ? "You're booked in" : 'Thank you'}</h3>
+        <h3>${isClass ? "Class enquiry previewed" : 'Enquiry preview complete'}</h3>
         <p>${isClass
-          ? "We'll confirm your spot by email shortly. See you on the floor."
-          : "A member of our team will be in touch within one business day."}</p>
+          ? "No class was booked and no information was sent. This is a portfolio demonstration."
+          : "No application was sent or stored. This is a portfolio demonstration."}</p>
       </div>`;
   }
 
@@ -448,3 +468,27 @@
   });
   addEventListener('keydown', e => e.key === 'Escape' && overlay.classList.contains('open') && close());
 })();
+
+
+// newsletter preview, no emails get sent
+document.querySelectorAll('.newsletter-form').forEach(form => {
+  const email = form.querySelector('input[type="email"]');
+  const feedback = form.querySelector('.newsletter-feedback');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    email.value = email.value.trim();
+    if (!email.checkValidity()) {
+      feedback.textContent = 'Enter a valid email address to preview the subscription.';
+      feedback.dataset.state = 'error';
+      email.focus();
+      return;
+    }
+    feedback.dataset.state = 'success';
+    feedback.textContent = 'Preview complete. No email was sent or stored.';
+    email.value = '';
+  });
+  form.addEventListener('reset', () => {
+    feedback.textContent = '';
+    feedback.removeAttribute('data-state');
+  });
+});

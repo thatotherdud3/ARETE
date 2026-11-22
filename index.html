@@ -25,7 +25,7 @@
   </div>
   
   <div class="nav-right">
-    <a href="#" class="nav-signup">Sign Up</a>
+    <a href="memberships.html#membership-options" class="nav-signup">Sign Up</a>
     <button class="cart-icon" type="button" aria-label="Cart, 0 items">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.29 5.16A2 2 0 0 0 6.53 21h11.94M9 21h.01M17 21h.01" />
@@ -120,14 +120,16 @@
     <h3>Let's Stay Connected</h3>
     <p>Subscribe to our newsletter to stay connected with the latest in fitness, wellness, and performance. Get exclusive training tips from our coaches, early access to new classes, and insider updates on promotions, events, and members-only offers.</p>
   </div>
-  <div>
-    <label for="email" style="font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-dim);">Email *</label>
+  <form class="newsletter-form" novalidate>
+    <label for="newsletter-email">Email *</label>
     <div class="form-row">
-      <input type="email" id="email" placeholder="Email Address">
-      <button class="btn-outline">Cancel</button>
-      <button class="btn-line">Subscribe Now</button>
+      <input type="email" id="newsletter-email" name="email" placeholder="Email Address" autocomplete="email" required aria-describedby="newsletter-feedback">
+      <button class="btn-outline" type="reset">Clear</button>
+      <button class="btn-line" type="submit">Subscribe Now</button>
     </div>
-  </div>
+    <p class="newsletter-note">Portfolio preview. No emails are sent or stored.</p>
+    <p class="newsletter-feedback" id="newsletter-feedback" role="status" aria-live="polite"></p>
+  </form>
 </div>
 
 <footer class="site-footer">
