@@ -1289,18 +1289,36 @@ footer a:hover {
   transition:color .2s ease;
 }
 .footer-social a:hover,.footer-social a:focus-visible{color:var(--ink)}
+/* same copyright style as glh, with a working instagram link */
 .footer-legal{
-  color:var(--ink-dim);
-  font:500 .65rem/1.6 'Inter',sans-serif;
-  letter-spacing:.14em;
-  text-align:center;
+  align-self:stretch;
+  width:100%;
+  margin:56px 0 0;
+  padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.28);
+  color:#c8c8c8;
+  font:600 11px/1.6 Helvetica,Arial,sans-serif;
+  letter-spacing:.1em;
+  text-align:left;
 }
 .footer-legal a{
-  color:var(--ink);
+  color:inherit;
+  font:inherit;
+  letter-spacing:inherit;
   text-decoration:none;
-  border-bottom:1px solid transparent;
 }
-.footer-legal a:hover,.footer-legal a:focus-visible{border-color:currentColor}
+.footer-legal a:hover,.footer-legal a:focus-visible{
+  color:inherit;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+@media(max-width:600px){
+  .footer-legal{
+    margin-top:34px;
+    font-size:10px;
+    letter-spacing:.06em;
+  }
+}
 
 /* demo form feedback */
 #membership-options{scroll-margin-top:6.5rem}
