@@ -241,7 +241,10 @@
     }
   });
   addEventListener('keydown', e => {
-    if (e.key === 'Escape' && checkoutModal.classList.contains('open')) closeCheckoutPreview();
+    if (e.key === 'Escape' && checkoutModal.classList.contains('open')) {
+      e.stopImmediatePropagation();
+      closeCheckoutPreview();
+    }
   });
 
   function openCart() { drawer.classList.add('open'); document.body.classList.add('scroll-lock'); }
@@ -357,10 +360,10 @@
     const isFounders = meta.tier === 'ARETE BLACK';
 
     overlay.innerHTML = `
-      <div class="bk-box" role="dialog" aria-modal="true">
+      <div class="bk-box" role="dialog" aria-modal="true" aria-labelledby="bk-title">
         <button class="bk-close" type="button" aria-label="Close">&times;</button>
         <span class="bk-badge">${isClass ? 'Class Booking' : (isFounders ? 'Invitation Only' : 'Membership Inquiry')}</span>
-        <h3 class="bk-title">${isClass ? 'Book a class' : (isFounders ? "ARETE BLACK Application" : 'Join ARETE')}</h3>
+        <h3 class="bk-title" id="bk-title">${isClass ? 'Preview a class' : (isFounders ? "ARETE BLACK Preview" : 'Explore membership')}</h3>
         <p class="bk-sub">${isClass
           ? "Explore a class enquiry. This preview does not reserve a place."
           : (isFounders
@@ -443,7 +446,7 @@
       <button class="bk-close" type="button" aria-label="Close">&times;</button>
       <div class="bk-success">
         <svg width="46" height="46" viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="22" stroke="#f5f3ee" stroke-width="1.4"/><path d="M14 23.5l6 6L32 17" stroke="#f5f3ee" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h3>${isClass ? "Class enquiry previewed" : 'Enquiry preview complete'}</h3>
+        <h3 id="bk-title">${isClass ? "Class enquiry previewed" : 'Enquiry preview complete'}</h3>
         <p>${isClass
           ? "No class was booked and no information was sent. This is a portfolio demonstration."
           : "No application was sent or stored. This is a portfolio demonstration."}</p>

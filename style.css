@@ -1324,3 +1324,5 @@ footer a:hover {
 .demo-checkout-close:hover{color:#fff}
 .demo-checkout-close:focus-visible,.demo-checkout-return:focus-visible{outline:2px solid #f5f3ee;outline-offset:4px}
 @media(prefers-reduced-motion:reduce){.demo-checkout{transition:none}}
+
+.bk-demo-note{margin-top:1rem;color:var(--ink-dim);font:.72rem/1.65 'Inter',sans-serif;text-align:center}

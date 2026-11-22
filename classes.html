@@ -202,21 +202,6 @@
   </form>
 </div>
 
-<!-- Static, build-time copy of the booking form so Netlify Forms can detect
-     it (Netlify only registers forms present in the raw HTML, not ones
-     injected by JavaScript). The real, visible form in the modal submits
-     to this same form name. Safe to delete this block if not hosting on
-     Netlify — see main.js for the submit handler. -->
-<form name="class-booking" data-netlify="true" netlify-honeypot="bot-field" hidden>
-  <input type="text" name="name">
-  <input type="email" name="email">
-  <input type="tel" name="phone">
-  <input type="text" name="class">
-  <input type="text" name="preferred_date">
-  <textarea name="notes"></textarea>
-  <input type="text" name="bot-field">
-</form>
-
 <footer class="site-footer">
   <div class="footer-social" aria-label="Social links">
     <a href="https://www.instagram.com/thatotherdud3/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
