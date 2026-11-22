@@ -99,8 +99,9 @@
     $$('.qv-sizes button', qv).forEach(s => s.addEventListener('click', () => { $$('.qv-sizes button', qv).forEach(x => x.classList.remove('on')); s.classList.add('on'); }));
     $('.qv-add', qv).addEventListener('click', () => {
       if (!currentCard || !window.ARETE_CART) return close();
-      const priceMatches = $('.product-price', currentCard).textContent.match(/\$[\d,]+/g) || ['$0'];
-      const price = parseInt(priceMatches[priceMatches.length - 1].replace(/[$,]/g, ''), 10);
+      const priceMatches = $('.product-price', currentCard).textContent.match(/£[\d,]+(?:\.\d{1,2})?/g) || [];
+      const price = priceMatches.length ? Number(priceMatches.at(-1).replace(/[£,]/g, '')) : NaN;
+      if (!Number.isFinite(price)) return;
       const size = $('.qv-sizes button.on', qv)?.textContent || 'M';
       window.ARETE_CART.addToCart({
         name: $('.product-name', currentCard).textContent,
@@ -117,7 +118,7 @@
 (() => {
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const KEY = 'arete_cart';
-  const money = n => '$' + n.toLocaleString('en-US');
+  const money = n => '£' + Number(n || 0).toLocaleString('en-GB', { maximumFractionDigits: 2 });
   const getCart = () => {
     try {
       const saved = JSON.parse(localStorage.getItem(KEY));
@@ -164,7 +165,7 @@
       </div>
       <div class="cart-items"></div>
       <div class="cart-footer">
-        <div class="cart-subtotal"><span>Subtotal</span><span class="cart-subtotal-amt">$0</span></div>
+        <div class="cart-subtotal"><span>Subtotal</span><span class="cart-subtotal-amt">£0</span></div>
         <button class="btn-line cart-checkout" type="button">Checkout</button>
       </div>
     </div>`;
